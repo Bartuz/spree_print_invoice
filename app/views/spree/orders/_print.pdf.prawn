@@ -11,11 +11,7 @@ fill_color "E99323"
 if @hide_prices
   text Spree.t(:packaging_slip), :align => :right, :style => :bold, :size => 18
 else
-  if @proforma
-    text "Proforma #{Spree.t(:customer_invoice)}", :align => :right, :style => :bold, :size => 18
-  else
-    text Spree.t(:customer_invoice), :align => :right, :style => :bold, :size => 18
-  end
+  text Spree.t(:customer_invoice), :align => :right, :style => :bold, :size => 18
 end
 fill_color "000000"
 
@@ -33,12 +29,12 @@ if Spree::PrintInvoice::Config.use_sequential_number? && @order.invoice_number.p
 else
 
   move_down 2
-  font "Helvetica",  :size => 9, :style => :bold
-  text "Invoice Number: Proforma/#{@order.number}", :align => :right
+  font "Helvetica",  :size => 9
+  text "#{Spree.t(:order_number, :number => @order.number)}", :align => :right
 
   move_down 2
   font "Helvetica", :size => 9
-  text "#{Spree.t(:invoice_date)} #{I18n.l @order.completed_at.to_date}", :align => :right
+  text "#{I18n.l @order.completed_at.to_date}", :align => :right
 
 end
 

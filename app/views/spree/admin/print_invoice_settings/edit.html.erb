@@ -24,6 +24,13 @@
             </div>
           </div>
         </div>
+        <div class="alpha four columns">
+          <div class="field">
+            <%= label_tag :print_invoice_show_to_user, Spree.t(:show_invoice_to_user) %><br>
+            <%= preference_field_tag :"preferences[print_invoice_show_to_user]", Spree::PrintInvoice::Config[:print_invoice_show_to_user],type: :boolean %>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="alpha four columns">
             <div class="field">
