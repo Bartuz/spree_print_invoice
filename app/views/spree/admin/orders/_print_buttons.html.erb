@@ -2,7 +2,7 @@
   <% buttons = Spree::PrintInvoice::Config[:print_buttons]
      buttons = buttons.split(",").collect{|b| b.strip } %>
   <%  buttons.each do |button| %>
-    <% if button == 'invoice' && @order.payment_state != 'paid' %>
+    <% if button == 'invoice' && (!@order.payment_state.paid? || !@order.subscription) %>
       <li><%= link_to(Spree.t(button.to_s + "_print"), spree.admin_order_path(@order, :pdf , :template => 'proforma'), :class => "button icon-print", target: "_blank") %></li>
       <% else %>
         <li><%= link_to(Spree.t(button.to_s + "_print"), spree.admin_order_path(@order, :pdf , :template => button), :class => "button icon-print", target: "_blank") %></li>

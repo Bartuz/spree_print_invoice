@@ -6,7 +6,7 @@ Spree::OrdersController.class_eval do
     respond_with(@order) do |format|
       format.pdf do
         template = "invoice"
-        unless @order.payment_state.paid?
+        unless @order.payment_state.paid? || !@order.subscription
           flash[:error] = "Payment hasn't been done yet!"
           redirect_to :back
           return true
