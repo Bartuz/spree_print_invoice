@@ -33,7 +33,7 @@ unless @hide_prices
 
   @order.shipments.each do |shipment|
     extra_row_count += 1
-    data << [nil, nil, nil, nil, shipment.shipping_method.name, shipment.display_cost.to_s]
+    data << [nil, nil, nil, nil, shipment.shipping_method..try(:name), shipment.try(:display_cost).to_s]
   end
 
   data << [nil, nil, nil, nil, Spree.t(:total), @order.display_total.to_s]
